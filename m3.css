@@ -1,0 +1,14 @@
+:root {
+    --md-checkbox-container-color: white;
+    --md-sys-color-on-surface-variant: white;
+    --md-sys-color-on-surface: white;
+    --md-sys-color-primary: rgb(0, 119, 255);
+    --md-sys-color-on-primary: white;
+    --md-sys-color-on-primary-container: white;
+    --md-checkbox-state-layer-size: 30px;
+    --md-focus-ring-color: white;
+    --md-focus-ring-width: 3px;
+
+    --md-circular-progress-size: 64px;
+    --md-circular-progress-active-indicator-width: 10;
+}

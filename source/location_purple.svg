@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<svg width="392" height="509" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+
+ <g class="layer">
+  <title>Layer 1</title>
+  <ellipse cx="203.6" cy="187.7" fill="#ffffff" id="svg_3" rx="99" ry="89.5"/>
+  <path d="m217.97,480.8c47.56,-59.52 156.03,-203.77 156.03,-284.8c0,-98.27 -79.73,-178 -178,-178s-178,79.73 -178,178c0,81.03 108.47,225.28 156.03,284.8c11.4,14.18 32.54,14.18 43.94,0zm-21.97,-344.13a59.33,59.33 0 1 1 0,118.67a59.33,59.33 0 1 1 0,-118.67z" fill="#7f00ff" id="svg_2" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="36"/>
+  <circle cx="196" cy="192" fill="none" id="svg_4" r="79.82" stroke="#7f00ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="40"/>
+ </g>
+</svg>

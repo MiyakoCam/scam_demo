@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>河川カメラViewer</title>
+        <meta charset="UTF-8" lang="ja">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="description" content="河川カメラViewer">
+        <!--M3テスト-->
+        <script type="importmap">
+            {
+                "imports": {
+                "@material/web/": "https://esm.run/@material/web/"
+                }
+            }
+        </script>
+        <script type="module">
+            import '@material/web/all.js';
+            import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+        
+            document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+        </script>
+        
+        <!--SNSでのサイト表示-->
+        <meta property="twitter:card" content="summary">
+        <meta property="twitter:site" content="@MiyakoCam">
+        <meta property="twitter:description" content="Viewer河川カメラ">
+        <meta property="og:title" content="河川カメラViewer">
+        <meta property="og:image" content="og.png">
+        <meta property="og:site_name" content="河川カメラViewer">
+        <!--その他のCSS・ライブラリ読み込み-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+        <script src="leaflet-src.js"></script>
+        <script src="leaflet-lib.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="fonts.css">
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-rotatedmarker"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL8HPL24E7"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZL8HPL24E7');
+        </script>
+        <link rel="stylesheet" href="amedas.css">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="m3.css">
+    </head>
+    <body>
+        <div id="map" style="background: white"></div>
+
+
+        <div class="btns">
+            <button id="prefselect" class="button">都道府県選択</button>
+            <button id="slideshow_start_btn" class="button">ｽﾗｲﾄﾞｼｮｰ開始</button>
+            <button id="slideshow_edit_btn" class="button">ｽﾗｲﾄﾞｼｮｰ編集</button>
+            <button id="gnss_reload_btn" class="button">現在地更新</button>
+        </div>
+
+        <div id="modal_back" class="modal_back"></div>
+
+        <div id="div_prefselect" class="modal">
+            <div id="front_div_prefselect">
+                <div><span style="font-size: 1.4rem;">都道府県選択</span></div>
+
+                <div><span id="cancel_front_div_prefselect">キャンセル</span><span id="ok_front_div_prefselect">適用</span></div>
+            </div>
+        </div>
+
+        <div id="div_slideshow_edit" class="modal">
+            <span id="close_div_slideshow_edit" class="modal_close">×</span>
+            <div id="front_div_slideshow_edit" class="modal_front">
+                <div><span style="font-size: 1.4rem;">スライドショー編集</span></div>
+                
+            </div>
+        </div>
+        
+        <div id="photoModal">
+            <span id="close_photoModal">×</span>
+            <div id="photoModal_back"></div>
+            <div id="photoModal_photo">
+                <div id="photoModal_photo_name">カメラ観測点名</div>
+                <img src="https://placehold.jp/640x480.png" id="photoModal_photo_img">
+            </div>
+            <!-- <label id="slideshow_select_label"><input type="checkbox" id="slideshow_select_checkbox" onchange="slideshow_checkbox(this)" data-camid="00000000" data-camname="カメラ観測点名">ｽﾗｲﾄﾞｼｮｰ保存</label> -->
+            <label id="slideshow_select_label"><md-checkbox id="slideshow_select_checkbox" onchange="slideshow_checkbox(this)" data-camid="00000000" data-camname="カメラ観測点名"></md-checkbox>ｽﾗｲﾄﾞｼｮｰ保存</label>
+            
+        </div>
+
+        <div id="gnssLoading">
+            <div id="gnssLoading_div">
+                <p><md-circular-progress id="gnssLoading-circular-progress" indeterminate></md-circular-progress></p>
+                <p>GNSSから現在地情報を取得中です…。</p>
+                <p>センサーから方角情報を取得中です…。</p>
+            </div>
+        </div>
+    </body>
+    <script src="index.js"></script>
+</html>

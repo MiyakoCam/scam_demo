@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <title>JSONファイルリーダー</title>
+</head>
+<body>
+  
+    <textarea id="fileInput" style="width: 90%;height: 50vh;"></textarea><button id="readBtn">読込</button><button id="clearBtn">クリア</button>
+  <br>
+  <textarea id="jsondata" style="width: 90%;height: 50vh;"></textarea>
+  <script>
+    document.getElementById('fileInput').addEventListener('change', function() {
+      
+        const jsonData = JSON.parse(document.getElementById('fileInput').value);
+        const twnCds = []; // twnCdを格納する配列
+
+        jsonData.twnInfo.forEach(item => {
+            if (item["scamExistFlg"] == 1) {
+                twnCds.push(item.twnCd);
+            }
+        });
+
+        var prefCode = String(twnCds[0]).slice(0,2);
+        
+        document.getElementById('jsondata').value = `"${prefCode}": {"prefName": "${jsonData.prefNm}", "cityList": `+JSON.stringify(twnCds, null, null)+`},`;
+    });
+    document.getElementById('clearBtn').addEventListener('click', function() {
+      document.getElementById('fileInput').value = '';
+      document.getElementById('jsondata').value = '';
+    });
+  </script>
+</body>
+</html>

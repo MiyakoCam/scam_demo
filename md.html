@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+        <script type="importmap">
+          {
+            "imports": {
+              "@material/web/": "https://esm.run/@material/web/"
+            }
+          }
+        </script>
+        <script type="module">
+          import '@material/web/all.js';
+          import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+      
+          document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+        </script>
+      </head>
+      <body>
+        <h1 class="md-typescale-display-medium">Hello Material!</h1>
+
+          <p class="md-typescale-body-medium">Check out these controls in a form!</p>
+          <label>
+            <md-checkbox id="checkbox1"></md-checkbox>
+            <span class="md-typescale-body-medium">チェックボックスのテストです。</span>
+          </label>
+          <br><br>
+          <md-outlined-text-field label="入力" id="text1"></md-outlined-text-field>
+          <md-filled-button id="text1Btn">送信する</md-filled-button>
+        
+
+        <md-dialog id="dialog1">
+            <div slot="headline">チェックボックス操作</div>
+            <div slot="content">チェックボックスが操作されました。</div>
+            <div slot="actions">
+                <md-text-button id="closeBtn">OK</md-text-button>
+            </div>
+        </md-dialog>
+
+        <md-dialog id="dialog2">
+            <div slot="headline" id="text1Headline"></div>
+            <div slot="content" id="text1Content"></div>
+            <div slot="actions" id="text1Actions">
+                <md-text-button id="closeBtn2">OK</md-text-button>
+            </div>
+        </md-dialog>
+        <style>
+          :root {
+            --md-ref-typeface-brand: 'Roboto', 'Noto Sans JP', sans-serif;
+            --md-ref-typeface-plain: 'Roboto', 'Noto Sans JP', sans-serif;
+          }
+        </style>
+
+        <script>
+            document.getElementById('checkbox1').addEventListener('change', function() {
+                document.getElementById('dialog1').show();
+            });
+            document.getElementById('closeBtn').addEventListener('click', function() {
+                document.getElementById('dialog1').close();
+            });
+
+            document.getElementById('text1Btn').addEventListener('click', async function() {
+                document.getElementById('dialog2').show();
+                document.getElementById('text1Headline').textContent = '送信中...';
+                document.getElementById('text1Content').innerHTML = `<md-circular-progress indeterminate></md-circular-progress>`;
+                document.getElementById('text1Actions').innerHTML = '';
+
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                document.getElementById('text1Headline').textContent = '送信されました。';
+                document.getElementById('text1Content').textContent = document.getElementById('text1').value;
+                document.getElementById('text1Actions').innerHTML = `<md-text-button onclick="document.getElementById('dialog2').close()">OK</md-text-button>`;
+            });
+        </script>
+      </body>
+</html>
